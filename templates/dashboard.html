@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insider Threat Detection Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100 vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 800 px;
+            background-color: #fff;
+            border-radius: 8 px;
+            padding: 20 px;
+            box-shadow: 0 4 px 8 px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20 px;
+        }
+        .anomaly {
+            border-bottom: 1 px solid #ddd;
+            padding: 10 px 0;
+        }
+        .anomaly:last-child {
+            border-bottom: none;
+        }
+        .anomaly strong {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insider Threat Detection Dashboard</h1>
+        <div id="anomaly-list">
+            <!-- Anomaly logs will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch and display anomalies from the server
+        async function fetchAnomalies() {
+            const response = await fetch('/anomalies');
+            const anomalies = await response.json();
+
+            const anomalyList = document.getElementById('anomaly-list');
+            anomalyList.innerHTML = '';  // Clear previous entries
+
+            // Populate the anomaly list
+            anomalies.forEach((anomaly, index) => {
+                const anomalyDiv = document.createElement('div');
+                anomalyDiv.classList.add('anomaly');
+                anomalyDiv.innerHTML = `
+                    <p><strong>Anomaly #${index + 1}</strong></p>
+                    <p><strong>User ID:</strong> ${anomaly.user_id}</p>
+                    <p><strong>Timestamp:</strong> ${anomaly.timestamp}</p>
+                    <p><strong>Action:</strong> ${anomaly.action_type}</p>
+                    <p><strong>Resource:</strong> ${anomaly.resource}</p>
+                    <p><strong>Details:</strong> ${anomaly.action_details}</p>
+                `;
+                anomalyList.appendChild(anomalyDiv);
+            });
+        }
+
+        // Fetch anomalies on page load
+        window.onload = fetchAnomalies;
+    </script>
+</body>
+</html>
