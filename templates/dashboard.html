@@ -51,15 +51,15 @@
     </div>
 
     <script>
-        // Function to fetch and display anomalies from the server
+    
         async function fetchAnomalies() {
             const response = await fetch('/anomalies');
             const anomalies = await response.json();
 
             const anomalyList = document.getElementById('anomaly-list');
-            anomalyList.innerHTML = '';  // Clear previous entries
+            anomalyList.innerHTML = '';  
 
-            // Populate the anomaly list
+        
             anomalies.forEach((anomaly, index) => {
                 const anomalyDiv = document.createElement('div');
                 anomalyDiv.classList.add('anomaly');
