@@ -1,4 +1,3 @@
-# scripts/feature_engineering.py
 import pandas as pd
 
 def preprocess_logs(file_path):
