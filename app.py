@@ -9,15 +9,15 @@ def index():
 
 @app.route('/log_anomaly', methods=['POST'])
 def log_anomaly():
-    new_log = request.get_json()  # Get JSON data from POST request
+    new_log = request.get_json()  
     
     if new_log:
         new_log['new'] = True
-        anomalies.append(new_log)  # Add anomaly to the list
-        print("Anomaly added:", new_log)  # Debug print statement
+        anomalies.append(new_log)  
+        print("Anomaly added:", new_log)  
         return jsonify({'status': 'Anomaly logged'}), 200
     else:
-        print("No data received")  # Debug print for empty data
+        print("No data received")  
         return jsonify({'status': 'No data received'}), 400
 '''
 @app.route('/anomalies')
@@ -41,7 +41,7 @@ def show_anomalies():
     }
 ]'''
 
-    print(anomalies)  # Print anomalies to confirm if there are any
+    print(anomalies)  
     return jsonify(anomalies)
 
 
