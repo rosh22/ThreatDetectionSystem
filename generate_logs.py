@@ -1,4 +1,3 @@
-# scripts/generate_logs.py
 import pandas as pd
 import random
 from datetime import datetime, timedelta
@@ -18,6 +17,5 @@ def generate_logs(num_logs):
         logs.append(log)
     return pd.DataFrame(logs)
 
-# Generate and save sample logs
 logs_df = generate_logs(1000)
 logs_df.to_csv(r"C:\Users\roshn\OneDrive\Desktop\UNSW\Term 3-2024\6841\project\data\synthetic_logs.csv", index=False)
